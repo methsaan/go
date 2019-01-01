@@ -10,6 +10,7 @@ mkdir -p $GOPATH/src/github.com/methsaan
 # package directory inside your workspace:
 mkdir -p $GOPATH/src/github.com/methsaan/hello
 
+```
 cat >$GOPATH/src/github.com/methsaan/hello/hello.go <<EOF
 package main
 
@@ -19,6 +20,7 @@ func main() {
     fmt.Println("Today is the 1st of January, 2019, first program")
 }
 EOF
+```
 
 # Note that you can run this command from anywhere on your system.
 # The go tool finds the source code by looking for the github.com/user/hello
