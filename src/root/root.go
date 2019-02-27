@@ -13,4 +13,5 @@ func main() {
 	fmt.Print("Enter the root: ")
 	fmt.Scanf("%f", &root)
 	fmt.Printf("%f root %f = %.20f\n", base, root, math.Pow(base, 1/root))
+	fmt.Printf("%.20f ^ %f = %f\n", math.Pow(base, 1/root), root, base)
 }
