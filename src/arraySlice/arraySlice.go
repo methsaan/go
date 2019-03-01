@@ -19,4 +19,8 @@ func main() {
 	fmt.Print("Enter a string: ")
 	str := getstr()
 	printstr(str)
+	fmt.Print("Enter another string: ")
+	str = getstr()
+	printstr(str)
+	printstr([]rune(string(str[0])))
 }
