@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"unicode"
+	"bufio"
+	"os"
 )
 
 func numOfWords(s string) int {
@@ -13,13 +15,24 @@ func numOfWords(s string) int {
 			cnt++
 		}
 	}
+	for x := 0; x < len(runearr); x++ {
+		if unicode.IsUpper(runearr[x]) && x != 0 {
+			cnt--
+		}
+	}
 	return cnt
 }
 func main() {
-	var word string
-	var ho int
-	fmt.Print("Enter a word: ")
-	word, ho = fmt.Scanln(&word)
-	//fmt.Println("Number of words: ", numOfWords(word))
-	fmt.Println(ho, word)
+	var x int = 0
+	var word string = ""
+	scanner := bufio.NewScanner(os.Stdin)
+	var b bool = scanner.Scan()
+	for b {
+		word += scanner.Text()
+		x++
+		if x == 1 {
+			b = false
+		}
+	}
+	fmt.Println(numOfWords(word))
 }
