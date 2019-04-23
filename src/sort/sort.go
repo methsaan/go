@@ -4,11 +4,11 @@ import (
 	"fmt"
 )
 
-func sort(list [100]int, start int, end int) []int {
+func bubblesort(list [100]int, start int, end int) []int {
 	var s int = start
 	var e int = end
 	var temp int
-	for x := s; x < e-1; x++ {
+	for x := s; x < end; x++ {
 		for y := s; y < e-1; y++ {
 			if list[y] > list[y+1] {
 				temp = list[y]
@@ -33,7 +33,7 @@ func main() {
 		list[x] = listitem
 	}
 	fmt.Print("Enter range to sort: ")
-	fmt.Scanf("%d %d", &s, &e)
-	fmt.Println("Original:", list[s:e])
-	fmt.Println("Sorted:", sort(list, s, e))
+	fmt.Scanf("%d, %d", &s, &e)
+	fmt.Println("Original list: \t\t ", list[s:e])
+	fmt.Println("Sorted list: \t\t ", bubblesort(list, s, e))
 }
