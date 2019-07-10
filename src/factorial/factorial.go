@@ -33,6 +33,9 @@ func main() {
 	f2 = sigma(number, start)
 	fmt.Println()
 	fmt.Printf("%d! = %d\n\n", number, f)
-	fmt.Printf("%d\n Σ k: %d\n", number, f2)
+	fmt.Printf("%d\n", number);
+	fmt.Printf(" _\n")
+	fmt.Printf("  / \tk: %d\n", f2)
+	fmt.Printf(" Σ\\\n")
 	fmt.Printf("k=%d\n", start)
 }
