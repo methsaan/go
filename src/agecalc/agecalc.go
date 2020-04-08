@@ -63,19 +63,19 @@ func main() {
 	var carried bool = false
 	if currentDay - day >= 0 {
 		dayDiff = currentDay-day
-	}else {
+	} else {
 		dayDiff = (currentDay+30)-day
 		carried = true
 	}
 	if carried == false {
 		if currentMonth - monthNum >= 0 {
 			monthDiff = currentMonth - monthNum
-		}else {
-			monthDiff = (currentMonth+30) - monthNum
+		} else {
+			monthDiff = (currentMonth+12) - monthNum
 			carried = true
 		}
-	}else {
-		if currentMonth - monthNum >= 0 {
+	} else {
+		if (currentMonth-1) - monthNum >= 0 {
 			monthDiff = (currentMonth-1) - monthNum
 			carried = false
 		}else {
