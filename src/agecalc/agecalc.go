@@ -46,7 +46,7 @@ func nextNum(str string, index int) int {
 }
 
 func main() {
-	var months [12]string = [12]string{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
+	var months [12]string = [12]string {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"}
 	var month string
 	var day int
 	var year int
@@ -61,21 +61,21 @@ func main() {
 	var dayDiff int
 	var accurateAge float64
 	var carried bool = false
-	if currentDay - day >= 0 {
+	if currentDay >= day {
 		dayDiff = currentDay-day
 	} else {
 		dayDiff = (currentDay+30)-day
 		carried = true
 	}
 	if carried == false {
-		if currentMonth - monthNum >= 0 {
+		if currentMonth >= monthNum {
 			monthDiff = currentMonth - monthNum
 		} else {
 			monthDiff = (currentMonth+12) - monthNum
 			carried = true
 		}
 	} else {
-		if (currentMonth-1) - monthNum >= 0 {
+		if (currentMonth-1) >= monthNum {
 			monthDiff = (currentMonth-1) - monthNum
 			carried = false
 		}else {
