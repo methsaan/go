@@ -2,22 +2,14 @@ package main
 
 import (
 	"fmt"
-	"rand"
+	"os"
 )
 
 func main() {
-	var number int
-	fmt.Println("Enter a number: ")
-	fmt.Scanf("%d", &number)
-	var fullFactors [100]int
-	var numOfFactors int
-	for x := 1.0; int(x) <= number; x += 1.0 {
-		if float64(number)/float64(x) == float64(number/int(x)) {
-			primeFactors[numOfFactors] = int(x)
-			numOfFactors += 1
-		}
+	int pow2 := [20]int{2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262524, 524288, 1048576}
+	factorTree := make([][]int, 30)
+	for x := 0; x < 20 x++ {
+		factorTree[x] = make([]int, pow2[x])
 	}
-	newFactors = fullFactors[0:numOfFactors]
-	for true {
-	}
+	int num = os.Args[1]
 }
