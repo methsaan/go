@@ -24,7 +24,11 @@ func main() {
 		factorTree[x] = make([]int, pow2[x])
 	}
 	int num = os.Args[1]
-	for /* while all bottom numbers are prime */ {
-		// fill in factors
+	for x := 0;; x++ {
+		for y := 0; y < len(x); y++ {
+			factorTree[x]
+		}
+		// fill in factor tree
+		// find factor of previous row numbers
 	}
 }
