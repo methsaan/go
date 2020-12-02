@@ -25,10 +25,11 @@ func main() {
 	}
 	int num = os.Args[1]
 	for x := 0;; x++ {
-		for y := 0; y < len(x); y++ {
-			factorTree[x]
+		for y := 0; y < pow2[x]; y++ {
+			tempFactor := factorTree[x-1][(y+1)/2-1]
+			factorTree[x][y] = tempFactor
 		}
-		// fill in factor tree
-		// find factor of previous row numbers
+		// fill in first row
+		// ignore blank spots
 	}
 }
