@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func factors(number int) []int {
 	factorList := make([]int, 511)
-	int cnt = 0
+	var cnt int = 0
 	for x := 1; x < number; x++ {
 		if number/(number/x) == number/x {
 			factorList[cnt] = x
@@ -18,18 +19,22 @@ func factors(number int) []int {
 }
 
 func main() {
-	int pow2 = [20]int{2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262524, 524288, 1048576}
-	factorTree := make([][]int, 30)
-	for x := 0; x < 20 x++ {
+	pow2 := [20]int{2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262524, 524288, 1048576}
+	factorTree := make([][]int, 20)
+	for x := 0; x < 20; x++ {
 		factorTree[x] = make([]int, pow2[x])
 	}
-	int num = os.Args[1]
-	for x := 0;; x++ {
-		for y := 0; y < pow2[x]; y++ {
-			tempFactor := factorTree[x-1][(y+1)/2-1]
-			factorTree[x][y] = tempFactor
-		}
-		// fill in first row
-		// ignore blank spots
+	num, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		fmt.Println(err)
 	}
+	factorTree[0][0] = num
+	var cnt int = 0
+	for x := 0; x < 5; x++ {
+		for y := 0; y < pow2[x]; y++ {
+			factorTree[x][y] = cnt
+			cnt++
+		}
+	}
+	fmt.Println(factorTree[0:5])
 }
