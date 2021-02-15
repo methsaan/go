@@ -4,16 +4,14 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"math/rand"
 )
 
-//bug
 func factors(number int) []int {
-	factorList := make([]int, 511)
-	var cnt int = 0
-	for x := 1; x < number; x++ {
-		if x == number/x {
-			factorList[cnt] = x
-			cnt += 1
+	factorList := make([]int, 0)
+	for x := 2; x < number; x++ {
+		if number%x == 0 {
+			factorList = append(factorList, x)
 		}
 	}
 	return factorList
@@ -36,6 +34,15 @@ func main() {
 
 	for x := 1; x < 5; x++ {
 		for y := 1; y < pow2[x]; y++ {
+			var factor1 int
+			var factor2 int
+			if y%2 == 0 {
+				factor1 = factors(factorTree[x-1][y/2])[rand.Intn(factors(factorTree[x-1][y/2]))]
+				factor2 = num / factor1
+			} else {
+				factor1 = factors(factorTree[x-1][(y+1)/2])[rand.Intn(factors(factorTree[x-1][y/2]))]
+				factor2 = num / factor2
+			}
 			if y%2 == 0 {
 				factorTree[x][y] = factorTree[x-1][y/2]
 			} else {
