@@ -31,20 +31,16 @@ func main() {
 		factorTree[x][0] = 0
 	}
 	factorTree[0][1] = num
-
+	var factoredSwitch bool = false
+	// can't run
 	for x := 1; x < 5; x++ {
 		for y := 1; y < pow2[x]; y++ {
-			var factor1 int
-			var factor2 int
-			if y%2 == 0 {
-				factor1 = factors(factorTree[x-1][y/2])[rand.Intn(factors(factorTree[x-1][y/2]))]
-				factor2 = num / factor1
-			} else {
-				factor1 = factors(factorTree[x-1][(y+1)/2])[rand.Intn(factors(factorTree[x-1][y/2]))]
-				factor2 = num / factor2
+			if factoredSwitch {
+				factorPair := [factorTree[x-1][y/2]], factorTree[x-1][(y+1)/2]]
 			}
 			if y%2 == 0 {
 				factorTree[x][y] = factorTree[x-1][y/2]
+				factoredSwitch = !factoredSwitch
 			} else {
 				factorTree[x][y] = factorTree[x-1][(y+1)/2]
 			}
