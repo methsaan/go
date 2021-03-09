@@ -14,12 +14,11 @@ func factors(number int) []int {
 			factorList = append(factorList, x)
 		}
 	}
-	factorList = append(factorList, number)
 	return factorList
 }
 
 func main() {
-	fmt.Println("haho")
+	fmt.Println(factors(100))
 	// powers of 2 +1
 	pow2 := [20]int{2, 3, 5, 9, 17, 33, 65, 129, 257, 513, 1025, 2049, 4097, 8193, 16385, 32769, 65537, 131073, 262525, 524289}
 	factorTree := make([][]int, 20)
@@ -36,15 +35,19 @@ func main() {
 	factorTree[0][1] = num
 	var factoredSwitch bool = false
 	factorPair := make([]int, 2)
+	// loop until all prime
 	for x := 1; x < 5; x++ {
 		for y := 1; y < pow2[x]; y++ {
 			if !factoredSwitch { // runs every 2 iterations, find factors
-				// fix 1 factor bug
 				prevRowFactors := factors(factorTree[x-1][(y+1)/2])
-				factorPair[0] = prevRowFactors[rand.Intn(len(prevRowFactors))]
-				factorPair[1] = factorTree[x-1][(y+1)/2]/factorPair[0]
+				if len(prevRowFactors) == 0 {
+					factorPair[0] = -1
+					factorPair[1] = -1
+				} else {
+					factorPair[0] = prevRowFactors[rand.Intn(len(prevRowFactors))]
+					factorPair[1] = factorTree[x-1][(y+1)/2]/factorPair[0]
+				}
 			}
-			fmt.Println(factorPair)
 			if y%2 != 0 { // first factor
 				factorTree[x][y] = factorPair[1]
 			} else { // second factor
