@@ -37,8 +37,12 @@ func intRepeat(i []int, count int) []int {
 }
 
 func main() {
-	// int literal
-	fmt.Println(append([]int{0}, intRepeat([]int{-1}, 10)))
+	// comparing slices
+	h := []int{0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
+	i := []int{0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2}
+	fmt.Println(append([]int{0}, intRepeat([]int{-1}, 10)...) == h)
+	fmt.Println(append([]int{0}, intRepeat([]int{-1}, 10)...) == i)
+	fmt.Println(append([]int{0}, []int{23, 25}...))
 	// powers of 2 +1
 	pow2 := [20]int{2, 3, 5, 9, 17, 33, 65, 129, 257, 513, 1025, 2049, 4097, 8193, 16385, 32769, 65537, 131073, 262525, 524289}
 	factorTree := make([][]int, 20)
@@ -56,7 +60,7 @@ func main() {
 	var factoredSwitch bool = false
 	factorPair := make([]int, 2)
 	for x := 1; x < 20; x++ {
-		fmt.Println(factorTree[x-1])
+		//fmt.Println(factorTree[x-1])
 		// does not work
 		// see if slices are equal
 		//if factorTree[x-1] == append([]int{0}, intRepeat([]int{-1}, len(factorTree[x-1])-1)...) {
@@ -82,12 +86,12 @@ func main() {
 			factoredSwitch = !factoredSwitch
 		}
 	}
-	fmt.Println()
-	fmt.Println()
-	fmt.Println(factorTree[0])
-	fmt.Println(factorTree[1])
-	fmt.Println(factorTree[2])
-	fmt.Println(factorTree[3])
-	fmt.Println(factorTree[4])
-	fmt.Println(factorTree[5])
+	//fmt.Println()
+	//fmt.Println()
+	//fmt.Println(factorTree[0])
+	//fmt.Println(factorTree[1])
+	//fmt.Println(factorTree[2])
+	//fmt.Println(factorTree[3])
+	//fmt.Println(factorTree[4])
+	//fmt.Println(factorTree[5])
 }
