@@ -7,6 +7,21 @@ import (
 	"math/rand"
 )
 
+func testEq(a, b []int) bool {
+	if (a == nil) != (b == nil) {
+		return false
+	}
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
 func factors(number int) []int {
 	factorList := make([]int, 0)
 	for x := 2; x < number; x++ {
@@ -37,13 +52,7 @@ func intRepeat(i []int, count int) []int {
 }
 
 func main() {
-	// comparing slices
-	h := []int{0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}
-	i := []int{0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2}
-	fmt.Println(append([]int{0}, intRepeat([]int{-1}, 10)...) == h)
-	fmt.Println(append([]int{0}, intRepeat([]int{-1}, 10)...) == i)
-	fmt.Println(append([]int{0}, []int{23, 25}...))
-	// powers of 2 +1
+	// store prime factors
 	pow2 := [20]int{2, 3, 5, 9, 17, 33, 65, 129, 257, 513, 1025, 2049, 4097, 8193, 16385, 32769, 65537, 131073, 262525, 524289}
 	factorTree := make([][]int, 20)
 	for x := 0; x < 20; x++ {
@@ -59,16 +68,15 @@ func main() {
 	factorTree[0][1] = num
 	var factoredSwitch bool = false
 	factorPair := make([]int, 2)
+	var factorTreeRows int = 0
 	for x := 1; x < 20; x++ {
-		//fmt.Println(factorTree[x-1])
-		// does not work
-		// see if slices are equal
-		//if factorTree[x-1] == append([]int{0}, intRepeat([]int{-1}, len(factorTree[x-1])-1)...) {
-		//	fmt.Println("Can't factorize - all numbers are prime")
-		//	break
-		//}
+		if testEq(factorTree[x-1], append([]int{0}, intRepeat([]int{-1}, len(factorTree[x-1])-1)...)) {
+			break
+		} else {
+			factorTreeRows += 1
+		}
 		for y := 1; y < pow2[x]; y++ {
-			if !factoredSwitch { // runs every 2 iterations, find factors
+			if !factoredSwitch {
 				prevRowFactors := factors(factorTree[x-1][(y+1)/2])
 				if len(prevRowFactors) == 0 {
 					factorPair[0] = -1
@@ -78,20 +86,15 @@ func main() {
 					factorPair[1] = factorTree[x-1][(y+1)/2]/factorPair[0]
 				}
 			}
-			if y%2 != 0 { // first factor
+			if y%2 != 0 {
 				factorTree[x][y] = factorPair[1]
-			} else { // second factor
+			} else {
 				factorTree[x][y] = factorPair[0]
 			}
 			factoredSwitch = !factoredSwitch
 		}
 	}
-	//fmt.Println()
-	//fmt.Println()
-	//fmt.Println(factorTree[0])
-	//fmt.Println(factorTree[1])
-	//fmt.Println(factorTree[2])
-	//fmt.Println(factorTree[3])
-	//fmt.Println(factorTree[4])
-	//fmt.Println(factorTree[5])
+	for x := 0; x < factorTreeRows; x++ {
+		fmt.Println(factorTree[x])
+	}
 }
