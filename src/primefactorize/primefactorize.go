@@ -53,13 +53,18 @@ func intRepeat(i []int, count int) []int {
 }
 
 func formatString(num int) string {
-	i := strconv.Itoa(num)
+	var i string
+	if num == -1 {
+		i = " "
+	} else {
+		i = strconv.Itoa(num)
+	}
 	var remaining int = 5
 	var middle int = 2-(len(i)/2)
-	var s string = strings.Repeat("-", middle)
+	var s string = strings.Repeat(" ", middle)
 	s = s + i
 	remaining -= len(s)
-	s = s + strings.Repeat("-", remaining)
+	s = s + strings.Repeat(" ", remaining)
 	return s
 }
 
@@ -116,9 +121,11 @@ func main() {
 		fmt.Println(factorTree[x])
 	}
 	fmt.Println(primeFactors)
+	fmt.Println(formatString(-8))
 	fmt.Println(formatString(8))
-	fmt.Println(formatString(24))
+	fmt.Println(formatString(23334))
 	fmt.Println(formatString(68))
 	fmt.Println(formatString(5))
 	fmt.Println(formatString(652))
+	fmt.Println(formatString(-1))
 }
