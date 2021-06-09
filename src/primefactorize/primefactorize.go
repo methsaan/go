@@ -118,7 +118,12 @@ func main() {
 		}
 	}
 	for x := 0; x < factorTreeRows; x++ {
-		fmt.Println(factorTree[x])
+		fmt.Println(func(a,b int) int {if a==1 {return a} else {return b} } ((len(factorTree[x])-1), (len(factorTree[x])-1)/2))
+		for y := 1; y < (len(factorTree[x])-1)/2; y++ {
+			fmt.Print(strconv.Itoa(factorTree[x][y]) + " ")
+			fmt.Print(strconv.Itoa(factorTree[x][y]) + " ")
+		}
+		fmt.Println()
 	}
 	fmt.Println(primeFactors)
 	fmt.Println(formatString(-8))
