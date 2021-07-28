@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"math/rand"
+	"math"
 )
 
 func testEq(a, b []int) bool {
@@ -118,13 +119,32 @@ func main() {
 		}
 	}
 	for x := 0; x < factorTreeRows; x++ {
-		fmt.Println(func(a,b int) int {if a==1 {return a} else {return b} } ((len(factorTree[x])-1), (len(factorTree[x])-1)/2))
-		for y := 1; y < (len(factorTree[x])-1)/2; y++ {
-			fmt.Print(strconv.Itoa(factorTree[x][y]) + " ")
+		for y := 1; y < len(factorTree[x]); y++ {
 			fmt.Print(strconv.Itoa(factorTree[x][y]) + " ")
 		}
 		fmt.Println()
 	}
+	fmt.Println()
+	rowSpacing := make([]int, factorTreeRows)
+	for x, y := factorTreeRows, 1; x > 0; x, y = x-1, y+1 {
+		rowSpacing[y-1] = int(math.Pow(2.0, float64(y))-1)
+	}
+	fmt.Println(rowSpacing)
+	fmt.Println()
+	for x := 0; x < factorTreeRows; x++ {
+		var indent int = (rowSpacing[x]+1)/2-1
+		for y := 0; y < indent; y++ {
+			fmt.Print(" ")
+		}
+		for y := 0; y < len(factorTree[x]); y++ {
+			fmt.Print("x")
+			for z := 0; z < rowSpacing[x]; z++ {
+				fmt.Print(" ")
+			}
+		}
+		fmt.Println()
+	}
+	fmt.Println()
 	fmt.Println(primeFactors)
 	fmt.Println(formatString(-8))
 	fmt.Println(formatString(8))
