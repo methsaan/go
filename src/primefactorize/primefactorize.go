@@ -125,22 +125,21 @@ func main() {
 		fmt.Println()
 	}
 	fmt.Println()
-	rowSpacing := make([]int, factorTreeRows)
-	for x, y := factorTreeRows, 1; x > 0; x, y = x-1, y+1 {
-		rowSpacing[y-1] = int(math.Pow(2.0, float64(y))-1)
+
+	indexes := make([]int, factorTreeRows)
+	for x := factorTreeRows-1; x >= 0; x-- {
+		indexes[(factorTreeRows-1)-x] = int(math.Pow(2.0, float64(x+1)))
 	}
-	fmt.Println(rowSpacing)
+	fmt.Println("indexes:", indexes)
+	
 	fmt.Println()
 	for x := 0; x < factorTreeRows; x++ {
-		var indent int = (rowSpacing[x]+1)/2-1
-		for y := 0; y < indent; y++ {
+		for y := 0; y < indexes[x]; y++ {
 			fmt.Print(" ")
 		}
-		for y := 0; y < len(factorTree[x]); y++ {
-			fmt.Print("x")
-			for z := 0; z < rowSpacing[x]; z++ {
-				fmt.Print(" ")
-			}
+		for y := 1; y < len(factorTree[x]); y++ {
+			fmt.Print(factorTree[x][y])
+			fmt.Print(" ")
 		}
 		fmt.Println()
 	}
