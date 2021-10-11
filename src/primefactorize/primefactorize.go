@@ -140,6 +140,9 @@ func main() {
 		for y := 1; y < len(factorTree[x]); y++ {
 			fmt.Print(factorTree[x][y])
 			fmt.Print(" ")
+			for z := 0; z < indexes[x]; z++ {
+				fmt.Print(" ")
+			}
 		}
 		fmt.Println()
 	}
