@@ -148,8 +148,8 @@ func main() {
 	}
 	fmt.Println()
 	fmt.Println(primeFactors)
-	fmt.Println(formatString(-8))
-	fmt.Println(formatString(8))
+	fmt.Println(formatString(-83))
+	fmt.Println(formatString(238))
 	fmt.Println(formatString(23334))
 	fmt.Println(formatString(68))
 	fmt.Println(formatString(5))
