@@ -1,9 +1,9 @@
 package main
 
-import(
+import (
 	"fmt"
-	"time"
 	"strconv"
+	"time"
 )
 
 func indexOf(word string, data [12]string) int {
@@ -32,7 +32,7 @@ func nextNum(str string, index int) int {
 	for x := 0; x < len(strSlice); x++ {
 		if isNumeric(strSlice[x]) {
 			tempStr += strSlice[x]
-		}else {
+		} else {
 			months[cnt] = tempStr
 			cnt += 1
 			tempStr = ""
@@ -52,7 +52,7 @@ func main() {
 	var year int
 	fmt.Println("Enter date of birth (m d y): ")
 	fmt.Scan(&month, &day, &year)
-	var monthNum int = indexOf(month, months)+1
+	var monthNum int = indexOf(month, months) + 1
 	var currentYear int = nextNum(time.Now().String(), 0)
 	var currentMonth int = nextNum(time.Now().String(), 1)
 	var currentDay int = nextNum(time.Now().String(), 2)
@@ -61,33 +61,33 @@ func main() {
 	var dayDiff int
 	var accurateAge float64
 	var carried bool = false
-	if currentDay - day >= 0 {
-		dayDiff = currentDay-day
-	}else {
-		dayDiff = (currentDay+30)-day
+	if currentDay >= day {
+		dayDiff = currentDay - day
+	} else {
+		dayDiff = (currentDay + 30) - day
 		carried = true
 	}
 	if carried == false {
-		if currentMonth - monthNum >= 0 {
+		if currentMonth >= monthNum {
 			monthDiff = currentMonth - monthNum
-		}else {
-			monthDiff = (currentMonth+30) - monthNum
+		} else {
+			monthDiff = (currentMonth + 12) - monthNum
 			carried = true
 		}
-	}else {
-		if currentMonth - monthNum >= 0 {
-			monthDiff = (currentMonth-1) - monthNum
+	} else {
+		if (currentMonth - 1) >= monthNum {
+			monthDiff = (currentMonth - 1) - monthNum
 			carried = false
-		}else {
-			monthDiff = ((currentMonth-1)+12) - monthNum
+		} else {
+			monthDiff = ((currentMonth - 1) + 12) - monthNum
 		}
 	}
 	if carried == true {
-		yearDiff = (currentYear-1) - year
-	}else {
+		yearDiff = (currentYear - 1) - year
+	} else {
 		yearDiff = currentYear - year
 	}
-	accurateAge = float64(yearDiff) + (float64(monthDiff)/12) + (float64(dayDiff)/365)
+	accurateAge = float64(yearDiff) + (float64(monthDiff) / 12) + (float64(dayDiff) / 365)
 	fmt.Println(accurateAge)
 	fmt.Print(yearDiff, " years, ")
 	fmt.Print(monthDiff, " months and ")
